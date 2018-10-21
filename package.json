@@ -1,0 +1,19 @@
+{
+  "name": "cocktail-app",
+  "version": "1.0.0",
+  "description": "An app to create, store, edit, and share cocktail recipes.",
+  "main": "src/servers.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Justinelliott11375/cocktail-app.git"
+  },
+  "author": "Justin Elliott",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Justinelliott11375/cocktail-app/issues"
+  },
+  "homepage": "https://github.com/Justinelliott11375/cocktail-app#readme"
+}
