@@ -1,3 +1,3 @@
 # cocktail-app
-An app to create, store, edit, and share cocktail recipes.
-.env secrete: cookieSecret="SECRET1"
+An app to create, store, edit, and share cocktail recipes.  
+.env secret: cookieSecret="SECRET1"
