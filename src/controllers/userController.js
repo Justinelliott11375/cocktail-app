@@ -28,23 +28,26 @@ module.exports = {
   },
 
   signInForm(req, res, next){
-    console.log("controller sign in  form called")
+    console.log("controller sign in form called")
     res.render("users/sign_in");
   },
 
   signIn(req, res, next) {
-    console.log("controller sign in called")
-    passport.authenticate("local")(req, res, function() {
-      if(!req.user){
-        console.log("error")
-        req.flash("notice", "Sign in failed. Please try again.")
-        res.redirect("/users/sign_in");
-      } else {
-        console.log("success");
-        req.flash("notice", "You've successfully signed in!");
-        res.redirect("/");
-      }
-    })
+    console.log("controller sign in called");
+      passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err) }
+        if (!user) {
+          req.flash("notice", "Sign in failed. Please try again.")
+          // *** Display message without using flash option
+          // re-render the login form with a message
+          return res.render("users/sign_in");
+        }
+        req.logIn(user, function(err) {
+          if (err) { return next(err); }
+          req.flash("notice", "You've successfully signed in!");
+          return res.redirect('/');
+        });
+      })(req, res, next);
   },
     
   signOut(req, res, next) {
