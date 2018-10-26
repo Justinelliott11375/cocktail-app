@@ -21,7 +21,7 @@ module.exports = {
     },
 
     validateUserSignIn(req, res, next) {
-        console.log("validate sign in called, body: " + req.body);
+        console.log("validate sign in called, body: " + req.body.password);
         if(req.method === "POST") {
             req.checkBody("email", "must be a valid email").isEmail();
             req.checkBody("password", "must be at least 6 characters in length").isLength({min: 6})
