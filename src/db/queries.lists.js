@@ -1,5 +1,5 @@
 const List = require("./models").List;
-const Post = require("./models").Post;
+const Card = require("./models").Card;
 //const Authorizer = require("../policies/list");
 
 module.exports = {
@@ -18,8 +18,8 @@ module.exports = {
 
         return List.findById(id, {
             include: [{
-                model: Post,
-                as: "posts"
+                model: Card,
+                as: "cards"
             }]
         })
         .then((list) => {

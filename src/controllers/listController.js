@@ -34,11 +34,14 @@ module.exports = {
     },
 
     show(req, res, next){
+        console.log("listController show called");
         listQueries.getList(req.params.id, (err,list) => {
             if(err || list == null){
+                ("listQueries getList error");
+                console.log(err);
                 res.redirect(404, "/");
             } else {
-                res.render("lists/show", {topic});
+                res.render("lists/show", {list});
             }
         });
     },
@@ -58,15 +61,7 @@ module.exports = {
             if(err || list == null){
                 res.redirect(404, "/");
             } else {
-
-                const authorized = new Authorizer(req.user, topic).edit();
-
-                if(authorized) {
                     res.render("lists/edit", {list});
-                } else {
-                    req.flash("notice","You are not authorized to do that.")
-                    res.redirect(`/lists/${req.params.id}`)
-                }
             }
         });
     },
