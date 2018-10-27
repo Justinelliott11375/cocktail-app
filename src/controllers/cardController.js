@@ -44,7 +44,7 @@ module.exports = {
 
     edit(req, res, next){
         cardQueries.getCard(req.params.id, (err, card) => {
-            if(err || post == null){
+            if(err || card == null){
                 res.redirect(404, "/");
             } else {
                 res.render("cards/edit", {card});

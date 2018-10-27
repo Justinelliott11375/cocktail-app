@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ../static/partials/head.ejs %>
+    </head>
+    <body>
+    <% include ../static/partials/navbar.ejs %>
+
+        <main class="container">
+            <% include ../static/partials/messages.ejs %>
+            <div style="display: flex; align-items:center;">
+                <h1><%= card.name %></h1>
+            </div>
+            <a href="/lists/<%=card.listId%>/cards/<%=card.id%>/edit" class="btn btn-warning">Edit</a>
+            <form style="display:initial" action="/lists/<%= card.listId %>/cards/<%= card.id %>/destroy" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+         
+            <p><%= card.recipe %></p>
+          
+        </main>
+
+        <% include ../static/partials/baseScripts.ejs %>
+
+    </body>
+</html>

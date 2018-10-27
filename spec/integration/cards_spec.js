@@ -46,7 +46,7 @@ describe("routes : cards", () => {
 	describe("User performing CRUD actions for cards", () => {
 
 		describe("GET /lists/:listId/cards/new", () => {
-			it("should render a new post form", done => {
+			it("should render a new card form", done => {
 				request.get(`${base}/${this.list.id}/cards/new`, (err, res, body) => {
 					expect(err).toBeNull();
 					expect(body).toContain("New Recipe");
@@ -56,7 +56,7 @@ describe("routes : cards", () => {
 		});
 
 		describe("POST /lists/:listId/cards/create", () => {
-			it("should create a new post and redirect", done => {
+			it("should create a new card and redirect", done => {
 				const options = {
 					url: `${base}/${this.list.id}/cards/create`,
 					form: {
@@ -84,13 +84,13 @@ describe("routes : cards", () => {
 				const options = {
 					url: `${base}/${this.list.id}/cards/create`,
 					form: {
-						name: "a",
-						recipe: "b",
+						name: "x",
+						recipe: "y",
 					},
 				};
 
 				request.post(options, (err, res, body) => {
-					Card.findOne({ where: { name: "a" } })
+					Card.findOne({ where: { name: "x" } })
 						.then(card => {
 							expect(card).toBeNull();
 							done();
@@ -114,13 +114,13 @@ describe("routes : cards", () => {
 		});
 
 		describe("POST /lists/listId/cards/:id/destroy", () => {
-			it("should delete the post with the associated Id", done => {
+			it("should delete the card with the associated Id", done => {
 				Card.all().then(cards => {
 					const cardCountBeforeDelete = cards.length;
 
 					expect(cardCountBeforeDelete).toBe(1);
 
-					request.post(`${base}/${this.list.id}/cards/${this.post.id}/destroy`, (err, res, body) => {
+					request.post(`${base}/${this.list.id}/cards/${this.card.id}/destroy`, (err, res, body) => {
 						Card.all().then(card => {
 							expect(card.length).toBe(cardCountBeforeDelete-1);
 							done();

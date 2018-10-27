@@ -24,44 +24,33 @@ module.exports = {
 			});
 	},
 
-	deletePost(req, callback) {
-		return Post.findById(req.params.id)
-			.then(post => {
-				const authorized = new Authorizer(req.user, post).destroy();
-				if (authorized) {
-					post.destroy().then(res => {
-						callback(null, post);
-					});
-				} else {
-					req.flash("notice", "You are not authorized to do that.");
-					callback(401);
-				}
+	deleteCard(req, callback) {
+		return Card.findById(req.params.id)
+			.then(card => {
+				card.destroy().then(res => {
+					callback(null, card);
+				});
 			})
 			.catch(err => {
 				callback(err);
 			});
 	},
 
-	updatePost(req, updatedPost, callback) {
-		return Post.findById(req.params.id).then((post) => {
-			if (!post) {
-				return callback("Post not found");
+	updateCard(req, updatedCard, callback) {
+		return Card.findById(req.params.id).then((card) => {
+			if (!card) {
+				return callback("Recipe not found");
 			}
-			const authorized = new Authorizer(req.user, post).update();
-			if (authorized) {
-				post.update(updatedPost, {
-						fields: Object.keys(updatedPost),
+				card.update(updatedCard, {
+						fields: Object.keys(updatedCard),
 					})
 					.then(() => {
-						callback(null, post);
+						callback(null, card);
 					})
 					.catch((err) => {
 						callback(err);
 					});
-			} else {
-				req.flash("notice", "You are not authorized to do that.");
-				callback("Forbidden");
-			}
+			
 		});
 	},
 };

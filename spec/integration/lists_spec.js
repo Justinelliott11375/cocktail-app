@@ -6,7 +6,7 @@ const sequelize = require("../../src/db/models/index").sequelize;
 const List = require("../../src/db/models").List;
 const User = require("../../src/db/models").User;
 
-fdescribe("routes : lists", () => {
+describe("routes : lists", () => {
 
   beforeEach((done) => {
     this.list;
@@ -54,7 +54,7 @@ fdescribe("routes : lists", () => {
       it("should render a new list form", (done) => {
         request.get(`${base}new`, (err, res, body) => {
           expect(err).toBeNull();
-          expect(body).toContain("New List");
+          expect(body).toContain("New Recipe List");
           done();
         });
       });
@@ -113,7 +113,7 @@ fdescribe("routes : lists", () => {
       it("should render a view with an edit list form", (done) => {
         request.get(`${base}${this.list.id}/edit`, (err, res, body) => {
           expect(err).toBeNull();
-          expect(body).toContain("Edit List");
+          expect(body).toContain("Edit Recipe List");
           expect(body).toContain("Classic Cocktails");
           done();
         });
