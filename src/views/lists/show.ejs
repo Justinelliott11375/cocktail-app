@@ -11,13 +11,13 @@
             
             <h1><%= list.title %></h1>
                 <% if(currentUser) { %>
-                    <a href="/lists/<%=list.id%>/posts/new" class="btn btn-success">New Recipe</a>
-                        <% if(currentUser.isAdmin()) { %>
-                            <a href="/lists/<%= list.id %>/edit" class="btn btn-warning">Edit</a>
+                    <a href="/lists/<%=list.id%>/cards/new" class="btn btn-secondary">New Recipe</a>
+                        
+                    <a href="/lists/<%= list.id %>/edit" class="btn btn-warning">Edit</a>
                             <form style="display:initial" action="/lists/<%= list.id %>/destroy" method="post">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                        <% } %>
+                     
                 <% } %>
             <p><%= list.description %></p>
             <hr>
@@ -25,9 +25,9 @@
             <h1>Recipes</h1>
 
             <ul class="list-group">
-                <% list.posts.forEach((post) => { %>
+                <% list.cards.forEach((card) => { %>
                     <li class="list-group-item">
-                        <a href="/lists/<%= list.id %>/cards/<%= card.id %>"> <%= card.title %> </a>
+                        <a href="/lists/<%= list.id %>/cards/<%= card.id %>"> <%= card.name %> </a>
                     </li>
                 <% }) %>
             </ul>
