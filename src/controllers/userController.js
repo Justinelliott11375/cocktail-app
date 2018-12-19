@@ -2,9 +2,9 @@ const userQueries = require("../db/queries.users.js");
  const passport = require("passport");
 
 module.exports = {
-  signUp(req, res, next){
-    console.log("controller sign up called");
-    res.render("users/sign_up");
+  register(req, res, next){
+    console.log("controller register called");
+    res.render("users/register");
   },
 
   create(req, res, next){
@@ -17,7 +17,7 @@ module.exports = {
     userQueries.createUser(newUser, (err, user) => {
       if(err){
         req.flash("error", err);
-        res.redirect("/users/sign_up");
+        res.redirect("/users/register");
       } else {
         passport.authenticate("local")(req, res, () => {
           req.flash("notice", "You've successfully signed in!");

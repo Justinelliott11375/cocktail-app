@@ -17,12 +17,12 @@ describe("routes : users", () => {
         });
     });
 
-    describe("GET /users/sign_up", () => {
+    describe("GET /users/register", () => {
 
-        it("should render a view with a sign up form", (done) => {
-            request.get(`${base}/sign_up`, (err, res, body) => {
+        it("should render a view with a register form", (done) => {
+            request.get(`${base}/register`, (err, res, body) => {
                 expect(err).toBeNull();
-                expect(body).toContain("Sign up");
+                expect(body).toContain("Register");
                 done();
             });
         });
