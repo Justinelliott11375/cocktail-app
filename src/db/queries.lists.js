@@ -1,5 +1,6 @@
 const List = require("./models").List;
 const Card = require("./models").Card;
+const collaboratorQueries = require("./queries.collaborators")
 //const Authorizer = require("../policies/list");
 
 module.exports = {

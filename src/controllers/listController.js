@@ -1,4 +1,5 @@
 const listQueries = require("../db/queries.lists.js");
+const collaboratorQueries = require("../db/queries.collaborators.js");
 //const Authorizer = require("../policies/list");
 
 module.exports = {
@@ -18,15 +19,23 @@ module.exports = {
     },
     create(req, res, next){
 
-       
             let newList = {
                 title: req.body.title,
-                description: req.body.description
+                description: req.body.description,
+                creator: req.user.id
             };
             listQueries.addList(newList, (err, list) => {
                 if(err){
                     res.redirect(500, "/lists/new");
                 } else {
+                    console.log("addList else called");
+                    let creatorCollab = {
+                        list: list.id,
+                        user: newList.creator,
+                        role: "admin"
+                    }
+                    console.log(creatorCollab);
+                    collaboratorQueries.addCreator(creatorCollab, (err, collaborator));
                     res.redirect(303, `/lists/${list.id}`);
                 }
             });

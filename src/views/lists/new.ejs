@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <% include ../static/partials/head.ejs %>
-    </head>
-    <body>
-        <% include ../static/partials/navbar.ejs %>
 
-        <main class="container">
+<head>
+    <% include ../static/partials/head.ejs %>
+</head>
 
-            <% include ../static/partials/messages.ejs %>
+<body>
+    <% include ../static/partials/navbar.ejs %>
 
-            <h1>New Recipe List</h1>
+    <main class="container">
 
-            <form action="/lists/create" method="post">
-                <div class="form-group">
-                    <label for="title">List title</label>
-                    <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
-                    <small class="text-muted" id="titleHelp">title must be 5 or more characters in length.</small>
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea rows="4" class="form-control" name="description" placeholder="Enter Description"></textarea>
-                    <small class="text-muted" id="bodyHelp">descrtiption must be 10 or more characters in length.</small>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+        <% include ../static/partials/messages.ejs %>
 
-        </main>
+        <h1>New Recipe List</h1>
 
-        <% include ../static/partials/baseScripts.ejs %>
+        <form action="/lists/create" method="post">
+            <div class="form-group">
+                <label for="title">List title</label>
+                <input type="text" class="form-control" name="title" aria-describedby="titleHelp"
+                    placeholder="Enter Title">
+                <small class="text-muted" id="titleHelp">title must be 5 or more characters in length.</small>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea rows="4" class="form-control" name="description" placeholder="Enter Description"></textarea>
+                <small class="text-muted" id="bodyHelp">descrtiption must be 10 or more characters in length.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
-    </body>
+    </main>
+
+    <% include ../static/partials/baseScripts.ejs %>
+
+</body>
+
 </html>

@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   List.associate = function(models) {
     // associations can be defined here
 
+    List.hasMany(models.Collaborator, {
+      foreignKey: "listId",
+      as: "collaborators"
+    });
     List.hasMany(models.Card, {
       foreignKey: "listId",
       as: "cards"
